@@ -67,7 +67,11 @@ function query(sheetRange, options) {
 			cellExpr[r] = i;
 			cellExpr[c] = j;
 			cell = sheet[XLSX.utils.encode_cell(cellExpr)] || {};
+			if (cell.w) {
+				value = cell.w;
+			} else {
 			value = cell.v;
+			}
 			if (options && options.header) {
 				value = datasourceHelpers.valueOrDefault(value, '');
 			}
